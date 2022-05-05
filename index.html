@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Maps</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="plugins/leaflet/leaflet.css">
+</head>
+
+<body>
+    <div class="holder">
+        <div id="map" class="map">
+        </div>
+        <div class="scroll" id="scroll">
+            <div class="maps-title">
+                <h3>Rural Access Index (RAI)</h3>
+                <p>
+                    This is a measure of the proportion of the rural population living within 2 kilometres
+                    of an all-weather road. The RAI is important as it measures people's transport accessibility in
+                    rural areas.
+                </p>
+            </div>
+            <div class="info-content">
+                <div class="content-item active">
+                    <h4></h4>
+                    <p>To determine where people live, or the <b>population distribution in rural areas</b>, the
+                        Rural Access Index
+                        uses WorldPopdata.<br />
+                        WorldPop estimates the number of people living in each 100 by 100 square
+                        meter on earth using
+                        remotely-sensed and geospatial datasets (settlement locations, settlement extents,
+                        land cover, roads,
+                        building maps, health facility locations, satellite nightlights, vegetation,
+                        topography and refugee
+                        camps).
+                    </p>
+                </div>
+                <div class="content-item">
+                    <p>Information on the <b>location of
+                            <span
+                                style="padding-left: 3px; padding-right: 3px; color: #ffffff; background-color: #d9ab34;">roads</span></b>
+                        comes from sources such as government databases, OpenStreetMap, satellite imagery, and
+                        global positioning satellite
+                        data. <br />For Kenya, the Kenya Roads Board carried out a Road Inventory Condition
+                        survey in 2018, for planning
+                        of road maintenance. The survey assessed the type of surface and the condition of
+                        approximately 420,000 road
+                        segments, covering almost 250,000 kilometres (155,000 miles).
+                    </p>
+                </div>
+                <div class="content-item">
+                    <p>Since the Rural Access Index measures road access for rural populations only, <span
+                            style="padding-left: 3px; padding-right: 3px; color: #ffffff; background-color: #BE4C37;">urban
+                            areas</span>
+                        need to be excluded from the calculation. To <b>separate urban from rural areas</b>,
+                        data from the Global
+                        Rural-Urban Mapping Project are used.
+                    </p>
+                </div>
+                <div class="content-item">
+                    <p>The Rural Access Index is calculated at the county level in Kenya.</p>
+                </div>
+
+                <div class="counties-chooser dont-activate text-start">
+                    Select a county to continue
+                    <div class="select">
+                        <select id="county_change">
+                            <option value="">Choose</option>
+                            <option value="meru">Meru</option>
+                        </select>
+                        <div class="select_arrow">
+                        </div>
+                    </div>
+                </div>
+
+                <h3 id="county_name" class="counties dont-activate capitalise text-centered"></h3>
+
+                <div class="content-item counties">
+                    <p>
+                        According to the 2019 population census, <span id="countyname"></span> county has a population
+                        of <span id="populationVal"></span> residents.
+                        This population live in both urban and rural areas. Remember that, RAI deals with rural
+                        pupulation only. Hence
+                        urban population is eliminated in determining this value.
+                    </p>
+                </div>
+                <div class="content-item counties">
+                    <p>
+                        When urban population is eliminated, you remain with rural population of approximately <span
+                            id="ruralpopulation"></span> residents.
+                    </p>
+                </div>
+                <div class="content-item counties">
+                    <p>
+                        This is the map of all roads within the county.
+                    </p>
+                </div>
+                <div class="content-item counties">
+                    <p>
+                        Rural Access Index is more concerned with population of people living within 2 Kilometer of a
+                        <strong>Good Quality Road</strong>. These are Roads
+                        that are accessible at all seasons. From all the roads in the county you delineate road which
+                        are good quality. They include; all paved road in
+                        good and fair condition as well as all classified roads in good condition.
+                    </p>
+                </div>
+                <div class="content-item counties">
+                    <p>
+                        From the roads data (Good Quality Roads), a 2 Kilometer buffer is created to designate areas
+                        within 2 kilometres along quality road within the county
+                    </p>
+                </div>
+                <div class="content-item counties">
+                    <p>
+                        After desinating the 2 kilometres buffer, urban areas are excluded from the buffer to remain
+                        with quality roads buffer for rural areas.
+                    </p>
+                </div>
+                <div class="content-item counties">
+                    <p>
+                        Finally, the population of people living within the 2 kilometres buffer zone is computed. For
+                        this county, the rural population is <span id="finalpupulation"></span>. This
+                        pupulation is the uses to determine the rural access index using the formula
+                        <br />
+                        (Rural Population within buffer zone/Rural Population)* 100%
+                        <br /><br />
+                    <p>
+                        This gives <span id="ruralaccessindexcounty" class="capitalise"></span> County a Rural Access
+                        Index
+                        of <span id="ruralaccessindex"></span> %.
+                    </p>
+                    </p>
+                </div>
+                <!-- PLACE COUNTIES ITEMS HERE-->
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="plugins/leaflet/leaflet.js"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+</body>
+
+</html>

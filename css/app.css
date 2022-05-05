@@ -1,0 +1,155 @@
+:root {
+    --white: #fff;
+}
+
+body {
+    margin: 0;
+}
+
+p {
+    padding: .3rem 0rem;
+}
+
+.holder {
+    display: block;
+    height: 100vh;
+    width: 100vw;
+}
+
+.scroll {
+    height: 40vh;
+    background-color: var(--white);
+    overflow-y: scroll;
+}
+
+.map {
+    height: 60vh;
+    background-color: green;
+}
+
+@media screen and (min-width: 720px) {
+    .holder {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-direction: row-reverse;
+    }
+
+    .scroll {
+        height: 100vh;
+        background-color: var(--white);
+        width: 30%;
+    }
+
+    .map {
+        height: 100vh;
+        background-color: green;
+        width: 70%;
+    }
+}
+
+.maps-title {
+    text-align: center;
+    padding: 0.5rem 0.2rem;
+    align-content: center;
+}
+
+.info-content {
+    padding-bottom: 500px;
+    text-align: justify;
+}
+
+.content-item {
+    padding: 2rem 0.2rem;
+    min-height: 200px;
+}
+
+.active {
+    background-color: #cccccc;
+}
+
+.counties {
+    text-align: left;
+}
+
+/*SELECT CSS*/
+.select {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.select select {
+    font-family: 'Arial';
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 15px;
+    outline: 0;
+    border: 0px solid #000000;
+    border-radius: 0px;
+    background: #e6e6e6;
+    color: #7b7b7b;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.select select::-ms-expand {
+    display: none;
+}
+
+.select select:hover,
+.select select:focus {
+    color: #000000;
+    background: #cccccc;
+}
+
+.select select:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.select_arrow {
+    position: absolute;
+    top: 16px;
+    right: 15px;
+    pointer-events: none;
+    border-style: solid;
+    border-width: 8px 5px 0px 5px;
+    border-color: #7b7b7b transparent transparent transparent;
+}
+
+.select select:hover~.select_arrow,
+.select select:focus~.select_arrow {
+    border-top-color: #000000;
+}
+
+.select select:disabled~.select_arrow {
+    border-top-color: #cccccc;
+}
+
+.display-none {
+    display: none;
+}
+
+.capitalise {
+    text-transform: capitalize;
+}
+
+.text-centered {
+    text-align: center;
+}
+
+.text-start {
+    text-align: start;
+}
+
+.text-end {
+    text-align: end;
+}
+
+.text-justify {
+    text-align: justify;
+}
