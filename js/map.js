@@ -3,25 +3,25 @@ var kenya = {
     bounds: [[5.4455, 33.7809], [-5.0141, 41.6936]],
     boundary: {
         population: {
-            url: "maps/population.jpg",
+            url: "maps/population.png",
             bound: [[5.92760, 30.05425], [-5.176811362, 45.722386033]],
             alt: 'Kenya Population',
             bounds: [[5.416275775, 33.909330246], [-4.705416000, 41.905583473]]
         },
         roads: {
-            url: "maps/roads.jpg",
+            url: "maps/roads.png",
             bound: [[5.92760, 30.05425], [-5.176811362, 45.722386033]],
             alt: 'Roads',
             bounds: [[5.416275775, 33.909330246], [-4.705416000, 41.905583473]]
         },
         urban: {
-            url: "maps/urbanareas.jpg",
+            url: "maps/urbanareas.png",
             bound: [[5.92760, 30.05425], [-5.176811362, 45.722386033]],
             alt: 'Urban Centers',
             bounds: [[5.416275775, 33.909330246], [-4.705416000, 41.905583473]]
         },
         counties: {
-            url: "maps/counties.jpg",
+            url: "maps/counties.png",
             bound: [[5.92760, 30.05425], [-5.176811362, 45.722386033]],
             alt: 'Kenya Counties',
             bounds: [[5.416275775, 33.909330246], [-4.705416000, 41.905583473]]
@@ -139,36 +139,26 @@ for (var i = 0; i < infoChilds.length; i++) {
     //}
 }
 
-var boundsNational = false;
-var boundsCounty = false;
-var showingNational = false;
-var iii = 0;
+
 scrollDiv.addEventListener('scroll', (e) => {
     var currentPosition = scrollDiv.scrollTop;
     //calcuate pixel above each div
     for (var i = 0; i < infoChilds.length; i++) {
+
         if (infoChilds[i].classList.contains('counties')) {
-
-            var iii = i;
-            if (currentPosition >= infoChilds[iii].getAttribute("pixels")
+            if (currentPosition >= infoChilds[i].getAttribute("pixels")
                 //&& currentPosition < infoChilds[i + 1].getAttribute("pixels")
-                && !infoChilds[iii].classList.contains('active') && county.length > 0) {
-
-
+                && !infoChilds[i].classList.contains('active') && county.length > 0) {
+                //reset active
+                resetActive();
                 //mark new active
-                var bbox = document.querySelectorAll('.content-item');
-                bbox.forEach(box => {
-                    box.classList.remove('active');
-                    // box.classList.add('small');
-                });
-
-                infoChilds[iii].classList.add("active");
-                //
+                infoChilds[i].classList.add("active");
                 var mapImage = kenya.counties[county].urls;
-                var ki = 0;
+                var ki = 4;
                 Object.keys(mapImage).forEach(function (k) {
-                    if ((i - 4) == ki) {
-                        switchMap("maps/counties/" + county + "/" + mapImage[k].url);
+                    if (i == ki) {
+                        switchMap("maps/counties/" + county + "/" + mapImage[k].url, currentPosition);
+                        return false;
                     }
                     ki++;
                 });
@@ -179,13 +169,9 @@ scrollDiv.addEventListener('scroll', (e) => {
             if (currentPosition >= infoChilds[i].getAttribute("pixels")
                 //&& currentPosition < infoChilds[i + 1].getAttribute("pixels")
                 && !infoChilds[i].classList.contains('active')) {
+                //reset active
+                resetActive();
                 //mark new active
-                var bbox = document.querySelectorAll('.content-item');
-                bbox.forEach(box => {
-                    box.classList.remove('active');
-                    // box.classList.add('small');
-                });
-
                 infoChilds[i].classList.add("active");
                 //
                 var mapImage = kenya.boundary;
@@ -193,8 +179,7 @@ scrollDiv.addEventListener('scroll', (e) => {
                 Object.keys(mapImage).forEach(function (k) {
                     //console.log(k);
                     if (i == ki) {
-                        //map.fitBounds(L.latLngBounds(mapImage[k].bound));
-                        switchMap(mapImage[k].url);
+                        switchMap(mapImage[k].url, currentPosition);
                     }
                     ki++;
                 });
@@ -204,8 +189,39 @@ scrollDiv.addEventListener('scroll', (e) => {
     }
 })
 
-function switchMap(url) {
+function resetActive() {
+    var bbox = document.querySelectorAll('.content-item');
+    bbox.forEach(box => {
+        box.classList.remove('active');
+    });
+}
+
+var boundsSetN = false;
+var boundsSetC = false;
+var mapBounds;
+function switchMap(url, currentPosition) {
+
     kenyaMap.setUrl(url);
+    /*
+    var pos = document.getElementById('firstCountyItem').getAttribute('pixels');
+    console.log(currentPosition + " -- " + pos);
+    if (pos < currentPosition && county.length > 0) {
+        console.log("bigger");
+        if (!boundsSetC) {
+            mapBounds = L.latLngBounds(kenya.counties[county].bounds);
+        }
+        kenyaMap.setBounds(mapBounds)
+        map.fitBounds(mapBounds);
+    }
+    else {
+        console.log("a miss");
+        if (!boundsSetN) {
+            mapBounds = L.latLngBounds(kenya.boundary.population.bound);
+        }
+        kenyaMap.setBounds(mapBounds)
+        map.fitBounds(mapBounds);
+    }*/
+
 }
 var county = "";
 var county_name = document.getElementById("county_name");
