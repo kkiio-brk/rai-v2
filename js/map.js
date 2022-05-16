@@ -158,7 +158,6 @@ scrollDiv.addEventListener('scroll', (e) => {
                 Object.keys(mapImage).forEach(function (k) {
                     if (i == ki) {
                         switchMap("maps/counties/" + county + "/" + mapImage[k].url, currentPosition);
-                        return false;
                     }
                     ki++;
                 });
