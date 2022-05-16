@@ -29,6 +29,9 @@ p {
     height: 40vh;
     background-color: var(--white);
     overflow-y: scroll;
+    background: linear-gradient(to left,
+            #049948 0%,
+            #59b984 100%);
 }
 
 .map {
@@ -74,7 +77,11 @@ p {
 }
 
 .active {
-    background-color: #cccccc;
+    background-color: #cccccc00;
+    -webkit-box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.86);
+    box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.86);
+    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 .counties {
@@ -89,7 +96,7 @@ p {
     width: 100%;
 }
 
-.select select {
+/*.select select {
     font-family: 'Arial';
     display: inline-block;
     width: 100%;
@@ -100,6 +107,22 @@ p {
     border-radius: 0px;
     background: #e6e6e6;
     color: #7b7b7b;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}*/
+
+.select select {
+    font-family: 'Arial';
+    display: inline-block;
+    width: 98%;
+    cursor: pointer;
+    padding: 10px 15px;
+    outline: 0;
+    border: 1px solid #243c4f;
+    border-radius: 9px;
+    background: #e6e6e630;
+    color: #000000;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -127,7 +150,7 @@ p {
     pointer-events: none;
     border-style: solid;
     border-width: 8px 5px 0px 5px;
-    border-color: #7b7b7b transparent transparent transparent;
+    border-color: #243c4f transparent transparent transparent;
 }
 
 .select select:hover~.select_arrow,
@@ -189,4 +212,84 @@ p {
 .krb-btn:active {
     position: relative;
     top: 1px;
+}
+
+.styled-scrollbars {
+    scrollbar-width: thin;
+}
+
+.styled-scrollbars::-webkit-scrollbar {
+    width: 5px;
+    /* width of the entire scrollbar */
+}
+
+.styled-scrollbars::-webkit-scrollbar-track {
+    background: #ffc107;
+    /* color of the tracking area */
+}
+
+.styled-scrollbars::-webkit-scrollbar-thumb {
+    background-color: #243c4f;
+    /* color of the scroll thumb */
+    border-radius: 0px;
+    /* roundness of the scroll thumb */
+    border: 1px solid #243c4f;
+    /* creates padding around scroll thumb */
+}
+
+body {
+    scrollbar-width: 5px;
+    /* "auto" or "thin" */
+    scrollbar-color: #243c4f #ffc107;
+    /* scroll thumb and track */
+}
+
+
+/*ANIMATIONS*/
+@-webkit-keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-webkit-keyframes slide-rotate-hor-top {
+    0% {
+        -webkit-transform: translateY(0) rotateX(0deg);
+        transform: translateY(0) rotateX(0deg);
+    }
+
+    100% {
+        -webkit-transform: translateY(-150px) rotateX(-90deg);
+        transform: translateY(-150px) rotateX(-90deg);
+    }
+}
+
+@keyframes slide-rotate-hor-top {
+    0% {
+        -webkit-transform: translateY(0) rotateX(0deg);
+        transform: translateY(0) rotateX(0deg);
+    }
+
+    100% {
+        -webkit-transform: translateY(-150px) rotateX(-90deg);
+        transform: translateY(-150px) rotateX(-90deg);
+    }
 }
